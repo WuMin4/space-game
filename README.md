@@ -1,2 +1,2 @@
 # space-game
-AI game
+AI game.
