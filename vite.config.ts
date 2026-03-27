@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: './',
+  base: '/space-game/',  // 改成你的仓库名
   plugins: [react(), tailwindcss(), viteSingleFile()],
   resolve: {
     alias: {
