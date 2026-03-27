@@ -1,8 +1,12 @@
 name: Deploy to GitHub Pages
 
 on:
+  # 1. 自动触发：也就是你 push 代码的时候
   push:
-    branches: ['main']
+    branches: ["main"]  # ⚠️ 如果你的分支叫 master，请把这里改成 master
+  
+  # 2. 手动触发按钮：允许你在 Actions 页面点击按钮部署
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -14,6 +18,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # ... (后面的内容保持不变) ...
   build:
     runs-on: ubuntu-latest
     steps:
@@ -23,22 +28,18 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
-      
+          node-version: "20"
+          
       - name: Install dependencies
         run: npm ci
-      
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      
+        
       - name: Build
         run: npm run build
-      
+        
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: './dist'
 
   deploy:
     environment:
